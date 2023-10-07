@@ -1,27 +1,33 @@
-import { useState } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  addContact,
+  deleteContact,
+  selectContacts,
+} from '../redux/contactsSlice';
+import { selectFilter, setFilter } from '../redux/filterSlice';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import Section from './Section/Section';
 
-import css from './App.module.css';
+import './App.module.css';
 
 function App() {
-  const [contacts, setContacts] = useLocalStorage('contacts', []);
-  const [filter, setFilter] = useState('');
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+  const dispatch = useDispatch();
 
   const onAddContact = newContact => {
-    setContacts([...contacts, newContact]);
+    dispatch(addContact(newContact));
   };
 
-  const deleteContact = contactId => {
-    setContacts(contacts.filter(contact => contact.id !== contactId));
+  const onDeleteContact = contactId => {
+    dispatch(deleteContact(contactId));
   };
 
   const changeFilter = evt => {
-    setFilter(evt.currentTarget.value);
+    dispatch(setFilter(evt.currentTarget.value));
   };
 
   const normalizedFilter = filter.toLowerCase();
@@ -30,7 +36,7 @@ function App() {
   );
 
   return (
-    <div className={css.wrapper}>
+    <div className="wrapper">
       <Section title="Phonebook">
         <ContactForm contacts={contacts} onAddContact={onAddContact} />
       </Section>
@@ -39,7 +45,7 @@ function App() {
         <Filter value={filter} onChange={changeFilter} />
         <ContactList
           contacts={filteredContacts}
-          onDeleteContact={deleteContact}
+          onDeleteContact={onDeleteContact}
         />
       </Section>
     </div>
