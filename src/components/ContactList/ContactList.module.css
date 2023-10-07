@@ -21,8 +21,8 @@
 
   border-radius: 8px;
   border: 1px solid whitesmoke;
-  /* background-color: #b6eada; */
-  padding: 16px;
+
+  padding: 16px 8px;
   transition: 250ms ease-in-out;
 }
 

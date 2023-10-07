@@ -11,7 +11,7 @@ import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import Section from './Section/Section';
 
-import './App.module.css';
+import css from './App.module.css';
 
 function App() {
   const contacts = useSelector(selectContacts);
@@ -36,7 +36,7 @@ function App() {
   );
 
   return (
-    <div className="wrapper">
+    <div className={css.wrapper}>
       <Section title="Phonebook">
         <ContactForm contacts={contacts} onAddContact={onAddContact} />
       </Section>
