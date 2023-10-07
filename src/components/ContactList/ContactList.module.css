@@ -19,6 +19,10 @@
   letter-spacing: 0.05rem;
   text-transform: capitalize;
 
+  border-radius: 8px;
+  border: 1px solid whitesmoke;
+  /* background-color: #b6eada; */
+  padding: 16px;
   transition: 250ms ease-in-out;
 }
 
@@ -30,14 +34,23 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  max-width: 110px;
+  max-width: 80px;
+  overflow-x: scroll;
+}
+
+.list__item__number__wrapper {
+  display: flex;
+
+  gap: 8px;
 }
 
 .list__item__number {
   display: flex;
-  flex-wrap: wrap;
+  /* justify-content: flex-end; */
+  /* flex-wrap: nowrap; */
   align-items: center;
   max-width: 110px;
+  overflow-x: scroll;
 }
 
 .list__delete__btn {
